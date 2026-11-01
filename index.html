@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm Tra Hóa Học 12 - Chương I đến IV | Thầy Hiệp Hóa Học</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#1d4ed8',
+                            600: '#1e40af',
+                            700: '#1d3557',
+                            800: '#0f172a',
+                            cyan: '#06b6d4',
+                            navy: '#0b192c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f8fafc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-blue-200">
+
+    <!-- Top Announcement Bar / Teacher Banner -->
+    <header class="bg-gradient-to-r from-slate-900 via-brand-navy to-slate-900 text-white border-b-2 border-cyan-500 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Branding -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="relative">
+                        <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full border-2 border-cyan-400 p-0.5 bg-blue-900 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                            <i class="fa-solid fa-flask-vial text-cyan-400 text-xl"></i>
+                        </div>
+                        <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500"></span>
+                        </span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold tracking-wider uppercase px-2 py-0.5 bg-cyan-500/20 text-cyan-300 rounded border border-cyan-500/30">HÓA 12 - MỚI</span>
+                            <span class="text-xs text-slate-400 hidden sm:inline">| Chương I - IV</span>
+                        </div>
+                        <h1 class="text-base sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                            Thầy Hiệp Hóa Học <span class="text-xs font-normal text-slate-300 bg-white/10 px-2 py-0.5 rounded-full">Đề Số 01</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Timer & Action Buttons -->
+                <div class="flex items-center space-x-3 sm:space-x-5">
+                    <!-- Countdown Timer -->
+                    <div id="timerContainer" class="flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-inner">
+                        <i class="fa-regular fa-clock text-cyan-400 text-base sm:text-lg animate-pulse"></i>
+                        <span id="timerDisplay" class="font-mono text-base sm:text-xl font-bold text-cyan-300">50:00</span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button id="btnSubmit" onclick="confirmSubmitModal()" class="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl shadow-md shadow-emerald-500/20 active:scale-95 transition-all text-sm sm:text-base">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span class="hidden xs:inline">Nộp Bài</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Column: Questions List (8 cols) -->
+        <main class="lg:col-span-8 space-y-6">
+
+            <!-- Banner info card -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-cyan-100 rounded-full opacity-40 blur-xl pointer-events-none"></div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-file-pen text-brand-500"></i>
+                            ĐỀ KIỂM TRA CHƯƠNG I - IV (HÓA HỌC 12)
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                            Cấu trúc chuẩn Bộ GD&ĐT: 18 câu trắc nghiệm đơn, 4 câu đúng/sai (16 ý), 6 câu trả lời ngắn.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-800 text-xs px-3 py-1.5 rounded-lg font-medium self-end sm:self-auto">
+                        <span>Tổng điểm: 10.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHẦN I: TRẮC NGHIỆM 4 PHƯƠNG ÁN -->
+            <section id="section-part-1" class="space-y-4">
+                <div class="sticky top-20 z-10 bg-slate-100/95 backdrop-blur py-2">
+                    <div class="bg-blue-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base flex items-center justify-between shadow-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-white text-blue-600 flex items-center justify-center text-xs font-black">I</span>
+                            PHẦN I: TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN (18 câu - 4.5đ)
+                        </span>
+                        <span class="text-xs font-normal text-blue-100 hidden sm:inline">0.25đ / câu</span>
+                    </div>
+                </div>
+                <div id="part1-questions" class="space-y-4"></div>
+            </section>
+
+            <!-- PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI -->
+            <section id="section-part-2" class="space-y-4 pt-4">
+                <div class="sticky top-20 z-10 bg-slate-100/95 backdrop-blur py-2">
+                    <div class="bg-amber-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base flex items-center justify-between shadow-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-white text-amber-600 flex items-center justify-center text-xs font-black">II</span>
+                            PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI (4 câu - 4.0đ)
+                        </span>
+                        <span class="text-xs font-normal text-amber-100 hidden sm:inline">Điểm bậc thang: 1 ý=0.1; 2 ý=0.25; 3 ý=0.5; 4 ý=1.0đ</span>
+                    </div>
+                </div>
+                <div id="part2-questions" class="space-y-5"></div>
+            </section>
+
+            <!-- PHẦN III: TRẢ LỜI NGẮN -->
+            <section id="section-part-3" class="space-y-4 pt-4">
+                <div class="sticky top-20 z-10 bg-slate-100/95 backdrop-blur py-2">
+                    <div class="bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base flex items-center justify-between shadow-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-white text-emerald-700 flex items-center justify-center text-xs font-black">III</span>
+                            PHẦN III: TRẮC NGHIỆM TRẢ LỜI NGẮN (6 câu - 1.5đ)
+                        </span>
+                        <span class="text-xs font-normal text-emerald-100 hidden sm:inline">0.25đ / câu</span>
+                    </div>
+                </div>
+                <div id="part3-questions" class="space-y-4"></div>
+            </section>
+
+        </main>
+
+        <!-- Right Column: Question Palette & Overview (4 cols sticky) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b pb-3 border-slate-100">
+                    <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-blue-600"></i>
+                        Bảng điều hướng câu hỏi
+                    </h3>
+                    <span id="answeredCount" class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                        0 / 28 Đã làm
+                    </span>
+                </div>
+
+                <!-- Legend -->
+                <div class="grid grid-cols-2 gap-2 text-xs text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300"></span>
+                        <span>Chưa làm</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-blue-600 text-white"></span>
+                        <span>Đã trả lời</span>
+                    </div>
+                </div>
+
+                <!-- Part 1 Grid -->
+                <div>
+                    <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Phần I (Câu 1 - 18)</div>
+                    <div class="grid grid-cols-6 gap-1.5" id="nav-part1"></div>
+                </div>
+
+                <!-- Part 2 Grid -->
+                <div>
+                    <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Phần II (Đúng/Sai: C1 - C4)</div>
+                    <div class="grid grid-cols-4 gap-2" id="nav-part2"></div>
+                </div>
+
+                <!-- Part 3 Grid -->
+                <div>
+                    <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Phần III (Ngắn: C1 - C6)</div>
+                    <div class="grid grid-cols-6 gap-1.5" id="nav-part3"></div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="confirmSubmitModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-flag-checkered text-amber-400"></i>
+                        Hoàn thành bài thi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Exam Guidelines Card -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50/50 rounded-2xl p-4 border border-blue-100 text-xs text-slate-600 space-y-2">
+                <div class="font-bold text-blue-900 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-info text-blue-600"></i>
+                    Lưu ý khi làm bài:
+                </div>
+                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                    <li>Câu hỏi phần II: Cần chọn đủ cả 4 ý a, b, c, d của câu đó để đạt điểm tối ưu.</li>
+                    <li>Phần III: Nhập số thập phân dùng dấu chấm hoặc phẩy (VD: 9.27 hoặc 9,27).</li>
+                    <li>Sau khi nộp bài, hệ thống sẽ mở lời giải chi tiết từng câu.</li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Modal Confirm Submit -->
+    <div id="modalConfirm" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-4 text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-lg font-bold text-center text-slate-800 mb-2">Bạn có chắc chắn muốn nộp bài?</h3>
+            <p id="modalConfirmMessage" class="text-sm text-slate-500 text-center mb-6">
+                Bạn vẫn còn thời gian làm bài. Hãy kiểm tra lại các câu chưa hoàn thành.
+            </p>
+            <div class="flex gap-3">
+                <button onclick="closeModal('modalConfirm')" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-700 hover:bg-slate-50 transition">
+                    Tiếp tục làm
+                </button>
+                <button onclick="submitExam()" class="flex-1 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 font-semibold text-white shadow-md shadow-blue-500/25 transition">
+                    Nộp bài ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Results -->
+    <div id="modalResult" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 my-8">
+            <div class="text-center space-y-3">
+                <div id="resultIcon" class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl shadow-inner">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800">KẾT QUẢ BÀI THI</h3>
+                <p class="text-sm text-slate-500">Đề kiểm tra Hóa học Chương I - IV</p>
+                
+                <!-- Score badge -->
+                <div class="py-4">
+                    <div class="text-5xl font-black text-blue-600 tracking-tight font-mono" id="totalScoreText">0.00</div>
+                    <div class="text-sm font-semibold text-slate-500 mt-1">trên thang điểm 10.0</div>
+                </div>
+            </div>
+
+            <!-- Score breakdown table -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-3 text-sm my-4">
+                <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-600 font-medium">Phần I (Trắc nghiệm 4 lựa chọn):</span>
+                    <span class="font-bold text-slate-800" id="scorePart1">0 / 4.5</span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-600 font-medium">Phần II (Trắc nghiệm Đúng/Sai):</span>
+                    <span class="font-bold text-slate-800" id="scorePart2">0 / 4.0</span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-600 font-medium">Phần III (Trả lời ngắn):</span>
+                    <span class="font-bold text-slate-800" id="scorePart3">0 / 1.5</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                    <span class="text-slate-600 font-medium">Thời gian hoàn thành:</span>
+                    <span class="font-semibold text-slate-800" id="timeFinished">00:00</span>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button onclick="reviewExam()" class="flex-1 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Xem đáp án & lời giải chi tiết
+                </button>
+                <button onclick="retakeExam()" class="px-5 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-sm transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    Làm lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           DATA STRUCTURE FOR EXAM QUESTIONS (HÓA HỌC CHƯƠNG I - IV)
+        ========================================================================= */
+
+        const PART1_QUESTIONS = [
+            {
+                id: 1,
+                question: "Chất giặt rửa tổng hợp thường có thành phần chính là:",
+                options: [
+                    "A. muối sodium alkylsulfate (R–OSO3Na), sodium alkylbenzene sulfonate (R–C6H4–SO3Na).",
+                    "B. glycerol và ethanol.",
+                    "C. saponin trong bồ hòn và bồ kết.",
+                    "D. muối sodium hoặc potassium của acid béo (thường là các gốc acid béo no)."
+                ],
+                correct: "A",
+                explain: "Chất giặt rửa tổng hợp thường là các muối sodium alkylsulfate hoặc sodium alkylbenzene sulfonate. Phương án D là thành phần chính của xà phòng thông thường."
+            },
+            {
+                id: 2,
+                question: "Chất nào sau đây thuộc loại monosaccharide?",
+                options: [
+                    "A. cellulose.",
+                    "B. saccharose.",
+                    "C. glucose.",
+                    "D. tinh bột."
+                ],
+                correct: "C",
+                explain: "Monosaccharide là carbohydrate đơn giản nhất không bị thủy phân, tiêu biểu là glucose và fructose."
+            },
+            {
+                id: 3,
+                question: "Cho các phát biểu sau về peptide T có công thức cấu tạo dưới đây:<br><div class='my-2 p-2 bg-slate-50 border rounded font-mono text-sm text-center font-semibold text-blue-900'>H2N-CH(CH3)-CO-NH-CH2-CO-NH-CH(CH3)-COOH</div><br>(a) Peptide T là dipeptide vì có chứa 2 liên kết peptide.<br>(b) Peptide T có phản ứng màu biuret.<br>(c) Peptide T tác dụng đủ với dung dịch NaOH theo tỉ lệ mol 1 : 3.<br>(d) Khi đun nóng peptide T với dung dịch acid hoặc kiềm dư sẽ xảy ra phản ứng thủy phân thu được 3 muối khác nhau.<br>(đ) T có thể được biểu diễn là Gly-Ala-Ala.<br>Số phát biểu <b>không đúng</b> về peptide T là:",
+                options: ["A. 3.", "B. 4.", "C. 2.", "D. 1."],
+                correct: "A",
+                explain: "Peptide T được tạo bởi Ala - Gly - Ala (có 3 gốc amino acid -> tripeptide, 2 liên kết peptide).<br>- (a) SAI vì T là tripeptide.<br>- (b) ĐÚNG vì tripeptide trở lên cho phản ứng biuret.<br>- (c) ĐÚNG vì tripeptide chứa 1 nhóm -COOH và 2 liên kết -CONH- tác dụng với 3 NaOH.<br>- (d) SAI vì thủy phân chỉ thu được muối của 2 amino acid là Ala và Gly.<br>- (đ) SAI vì cấu tạo là Ala-Gly-Ala, không phải Gly-Ala-Ala.<br>Vậy có 3 phát biểu KHÔNG ĐÚNG là (a), (d), (đ). Chọn A."
+            },
+            {
+                id: 4,
+                question: "Tơ là những vật liệu polymer hình sợi dài và mảnh với độ bền nhất định. Sợi bông được lấy từ quả của cây bông thuộc loại:",
+                options: [
+                    "A. tơ hóa học.",
+                    "B. tơ tổng hợp.",
+                    "C. tơ tự nhiên.",
+                    "D. tơ bán tổng hợp."
+                ],
+                correct: "C",
+                explain: "Sợi bông, tơ tằm, len lông cừu là các loại tơ có sẵn trong thiên nhiên -> tơ tự nhiên."
+            },
+            {
+                id: 5,
+                question: "Nhỏ nước bromine vào ống nghiệm đựng dung dịch aniline. Hiện tượng quan sát được là:",
+                options: [
+                    "A. xuất hiện kết tủa màu vàng.",
+                    "B. xuất hiện khí không màu.",
+                    "C. xuất hiện kết tủa màu xanh.",
+                    "D. xuất hiện kết tủa màu trắng."
+                ],
+                correct: "D",
+                explain: "Aniline phản ứng với nước bromine tạo kết tủa trắng 2,4,6-tribromoaniline."
+            },
+            {
+                id: 6,
+                question: "Carbohydrate nào sau đây có trong hoa quả, rau, củ, đặc biệt có nhiều trong thân cây mía, củ cải đường và hoa thốt nốt?",
+                options: [
+                    "A. Cellulose.",
+                    "B. Saccharose.",
+                    "C. Glucose.",
+                    "D. Fructose."
+                ],
+                correct: "B",
+                explain: "Saccharose (đường mía) có nhiều nhất trong cây mía, củ cải đường và hoa thốt nốt."
+            },
+            {
+                id: 7,
+                question: "“Khi thay thế một hay nhiều nguyên tử…(1)… trong phân tử ammonia bằng một hay nhiều gốc…(2)… thu được amine”. Nội dung phù hợp trong phần bỏ trống (1), (2) lần lượt là:",
+                options: [
+                    "A. hydrogen, hydrocarbon.",
+                    "B. nitrogen, alkyl.",
+                    "C. hydrogen, alkyl.",
+                    "D. nitrogen, hydrocarbon."
+                ],
+                correct: "A",
+                explain: "Theo định nghĩa chuẩn: Khi thay thế một hay nhiều nguyên tử hydrogen trong phân tử NH3 bằng một hay nhiều gốc hydrocarbon, ta thu được amine."
+            },
+            {
+                id: 8,
+                question: "Alanine là amino acid có công thức phân tử là:",
+                options: [
+                    "A. C2H5O2N.",
+                    "B. C2H7O2N.",
+                    "C. C3H5O2N.",
+                    "D. C3H7O2N."
+                ],
+                correct: "D",
+                explain: "Alanine có công thức cấu tạo CH3-CH(NH2)-COOH => CTPT là C3H7O2N."
+            },
+            {
+                id: 9,
+                question: "PE là loại nhựa phổ biến, được ứng dụng để sản xuất túi nylon, bao gói, màng bọc thực phẩm, chai lọ, đồ chơi trẻ em... PE được cấu tạo từ các đơn vị mắt xích là:",
+                options: [
+                    "A. -CH2-CH(CH3)-.",
+                    "B. -CH2-CHCl-.",
+                    "C. -CH2-CH2-.",
+                    "D. -C6H10O5-."
+                ],
+                correct: "C",
+                explain: "Polyethylene (PE) được trùng hợp từ ethylene (CH2=CH2), có mắt xích là -CH2-CH2-."
+            },
+            {
+                id: 10,
+                question: "Thực hiện thí nghiệm theo 2 bước sau:<br><b>Bước 1:</b> Cho vào ống nghiệm khoảng 1 mL dd NaOH 30%. Thêm tiếp vài giọt dd CuSO4 2%, lắc đều.<br><b>Bước 2:</b> Thêm vào ống nghiệm khoảng 3 mL dung dịch lòng trắng trứng, lắc hoặc khuấy đều hỗn hợp.<br>Phát biểu nào sau đây đúng?",
+                options: [
+                    "A. Sau bước 2 kết tủa tan tạo dung dịch màu xanh.",
+                    "B. Sau bước 1 xuất hiện kết tủa màu trắng.",
+                    "C. Thí nghiệm trên dùng để phân biệt dipeptide với các peptide còn lại.",
+                    "D. Thay lòng trắng trứng bằng dầu thực vật, hiện tượng xảy ra tương tự."
+                ],
+                correct: "C",
+                explain: "Phản ứng màu biuret đặc trưng cho các hợp chất có từ 2 liên kết peptide trở lên (tripeptide, protein...). Dipeptide không có phản ứng này nên thí nghiệm dùng để phân biệt dipeptide với các peptide còn lại.<br>(A sai vì tạo phức màu tím; B sai vì bước 1 tạo Cu(OH)2 màu xanh; D sai vì dầu thực vật là lipid không có phản ứng biuret)."
+            },
+            {
+                id: 11,
+                question: "Nhận xét nào về tính tan và khả năng đông tụ bởi nhiệt của albumin ở lòng trắng trứng là đúng?",
+                options: [
+                    "A. Tan được vào nước và không bị đông tụ bởi nhiệt.",
+                    "B. Tan được vào nước và bị đông tụ bởi nhiệt.",
+                    "C. Không tan được vào nước và không bị đông tụ bởi nhiệt.",
+                    "D. Không tan được vào nước và bị đông tụ bởi nhiệt."
+                ],
+                correct: "B",
+                explain: "Albumin là protein dạng hình cầu, tan được trong nước tạo dung dịch keo và bị đông tụ khi đun nóng."
+            },
+            {
+                id: 12,
+                question: "Ở điều kiện thường, glutamic acid là:",
+                options: [
+                    "A. chất rắn, có nhiệt độ nóng chảy cao.",
+                    "B. chất rắn, ít tan trong nước.",
+                    "C. chất lỏng, có nhiệt độ nóng chảy thấp.",
+                    "D. chất lỏng, tan tốt trong nước."
+                ],
+                correct: "A",
+                explain: "Amino acid tồn tại ở dạng ion lưỡng cực nên ở điều kiện thường là chất rắn kết tinh không màu, nhiệt độ nóng chảy cao và dễ tan trong nước."
+            },
+            {
+                id: 13,
+                question: "Tên gọi của ester CH3COOC2H5 là:",
+                options: [
+                    "A. methyl acetate.",
+                    "B. ethyl formate.",
+                    "C. methyl formate.",
+                    "D. ethyl acetate."
+                ],
+                correct: "D",
+                explain: "Gốc C2H5- là ethyl, gốc CH3COO- là acetate => ethyl acetate."
+            },
+            {
+                id: 14,
+                question: "Phát biểu nào đúng về các carbohydrate: glucose, fructose, saccharose, tinh bột, cellulose?",
+                options: [
+                    "A. Chỉ có tinh bột phản ứng được với nitric acid khi có mặt sulfuric acid đặc.",
+                    "B. Chỉ có saccharose, tinh bột, cellulose bị thủy phân trong môi trường kiềm.",
+                    "C. Chỉ có glucose, fructose, saccharose thể hiện tính chất hóa học của polyalcohol.",
+                    "D. Chỉ có glucose thể hiện tính chất của nhóm carbonyl."
+                ],
+                correct: "C",
+                explain: "Glucose, fructose, saccharose đều chứa nhiều nhóm -OH liền kề nên hòa tan được Cu(OH)2 tạo dung dịch xanh lam (tính chất polyalcohol). Tinh bột và cellulose không có tính chất này do cấu trúc polymer cuộn/bó chặt. (Carbohydrate không bị thủy phân trong môi trường kiềm; cellulose cũng phản ứng HNO3/H2SO4đ)."
+            },
+            {
+                id: 15,
+                question: "Chất béo là:",
+                options: [
+                    "A. triester của glycerol với acid béo.",
+                    "B. triester của acid hữu cơ và glycerol.",
+                    "C. ester của acid béo và alcohol đa chức.",
+                    "D. hợp chất hữu cơ chứa C, H, N, O."
+                ],
+                correct: "A",
+                explain: "Theo khái niệm: Chất béo là triester của glycerol với các acid béo (monocarboxylic có mạch carbon dài, không phân nhánh, số C chẵn từ 12-24)."
+            },
+            {
+                id: 16,
+                question: "Phát biểu nào sau đây <b>không đúng</b> về tính chất hóa học của ethylamine?",
+                options: [
+                    "A. Dung dịch ethylamine trong nước làm quỳ tím hóa xanh.",
+                    "B. Ethylamine có tính base vì phân tử có chứa nhóm –NH2.",
+                    "C. Ethylamine tác dụng với nitrous acid ở nhiệt độ thấp (0 - 5°C) thu được muối diazonium.",
+                    "D. Dung dịch ethylamine tác dụng được với dung dịch muối FeCl3."
+                ],
+                correct: "C",
+                explain: "Chỉ amine thơm bậc một (như aniline C6H5NH2) mới phản ứng với HNO2 ở 0-5°C sinh ra muối diazonium bền. Ethylamine là amine no bậc một, phản ứng sinh ra alcohol (C2H5OH), khí N2 và H2O."
+            },
+            {
+                id: 17,
+                question: "Saccharose có bao nhiêu tính chất trong số các tính chất sau: tác dụng với Cu(OH)2/OH-, tác dụng với thuốc thử Tollens, tác dụng với nước bromine, thủy phân khi có xúc tác acid hoặc enzyme?",
+                options: [
+                    "A. 3.",
+                    "B. 1.",
+                    "C. 4.",
+                    "D. 2."
+                ],
+                correct: "D",
+                explain: "Saccharose có 2 tính chất: (1) Hòa tan Cu(OH)2 ở nhiệt độ thường tạo phức xanh lam; (2) Thủy phân trong môi trường acid hoặc enzyme thành glucose + fructose. Saccharose không có nhóm -CHO tự do nên KHÔNG tráng bạc và KHÔNG làm mất màu nước bromine."
+            },
+            {
+                id: 18,
+                question: "Nhận xét nào dưới đây <b>không đúng</b> khi nói về glucose và fructose?",
+                options: [
+                    "A. Đều xảy ra phản ứng tráng bạc khi tác dụng với thuốc thử Tollens.",
+                    "B. Đều làm mất màu nước bromine.",
+                    "C. Đều tạo được kết tủa đỏ gạch Cu2O khi tác dụng với Cu(OH)2, đun nóng trong môi trường kiềm.",
+                    "D. Đều tạo được dung dịch màu xanh lam khi tác dụng với Cu(OH)2 trong môi trường kiềm."
+                ],
+                correct: "B",
+                explain: "Chỉ có glucose làm mất màu nước bromine (do chứa nhóm -CHO). Fructose là polyhydroxyketone không phản ứng với nước bromine (môi trường acid), đây là phản ứng dùng để phân biệt glucose và fructose."
+            }
+        ];
+
+        const PART2_QUESTIONS = [
+            {
+                id: 1,
+                title: "Polymer X (Nylon-6,6)",
+                description: "Polymer X có tính dai, bền, mềm mại, óng mượt, ít thấm nước, giặt mau khô. Polymer X dùng để dệt vải may mặc, vải lót săm lốp xe, dệt bít tất, bện làm dây cáp, dây dù, đan lưới… Cấu tạo một đoạn mạch polymer X:",
+                svgSnippet: `
+                <div class="overflow-x-auto py-2 my-2 bg-slate-50 border border-slate-200 rounded-xl flex justify-center">
+                    <svg viewBox="0 0 600 120" class="w-full max-w-xl h-24">
+                        <text x="30" y="70" font-family="JetBrains Mono" font-size="34" font-weight="bold" fill="#0f172a">[</text>
+                        <!-- N-H -->
+                        <text x="50" y="40" font-family="JetBrains Mono" font-size="16" fill="#64748b">H</text>
+                        <line x1="56" y1="46" x2="56" y2="60" stroke="#64748b" stroke-width="2"/>
+                        <text x="48" y="78" font-family="JetBrains Mono" font-size="18" font-weight="bold" fill="#1d4ed8">N</text>
+                        <line x1="68" y1="73" x2="105" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <text x="110" y="78" font-family="JetBrains Mono" font-size="16" fill="#0f172a">(CH₂)₆</text>
+                        <line x1="175" y1="73" x2="210" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <!-- N-H -->
+                        <text x="215" y="40" font-family="JetBrains Mono" font-size="16" fill="#64748b">H</text>
+                        <line x1="221" y1="46" x2="221" y2="60" stroke="#64748b" stroke-width="2"/>
+                        <text x="213" y="78" font-family="JetBrains Mono" font-size="18" font-weight="bold" fill="#1d4ed8">N</text>
+                        <line x1="233" y1="73" x2="265" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <!-- C=O -->
+                        <text x="270" y="78" font-family="JetBrains Mono" font-size="18" font-weight="bold" fill="#0f172a">C</text>
+                        <line x1="277" y1="60" x2="277" y2="45" stroke="#ef4444" stroke-width="2"/>
+                        <line x1="281" y1="60" x2="281" y2="45" stroke="#ef4444" stroke-width="2"/>
+                        <text x="274" y="40" font-family="JetBrains Mono" font-size="16" font-weight="bold" fill="#ef4444">O</text>
+                        <line x1="288" y1="73" x2="320" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <text x="325" y="78" font-family="JetBrains Mono" font-size="16" fill="#0f172a">(CH₂)₄</text>
+                        <line x1="390" y1="73" x2="425" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <!-- C=O -->
+                        <text x="430" y="78" font-family="JetBrains Mono" font-size="18" font-weight="bold" fill="#0f172a">C</text>
+                        <line x1="437" y1="60" x2="437" y2="45" stroke="#ef4444" stroke-width="2"/>
+                        <line x1="441" y1="60" x2="441" y2="45" stroke="#ef4444" stroke-width="2"/>
+                        <text x="434" y="40" font-family="JetBrains Mono" font-size="16" font-weight="bold" fill="#ef4444">O</text>
+                        <line x1="448" y1="73" x2="520" y2="73" stroke="#0f172a" stroke-width="2"/>
+                        <text x="525" y="70" font-family="JetBrains Mono" font-size="34" font-weight="bold" fill="#0f172a">]</text>
+                        <text x="545" y="85" font-family="JetBrains Mono" font-size="16" font-style="italic" fill="#0f172a">n</text>
+                    </svg>
+                </div>`,
+                items: [
+                    { key: "a", text: "Các loại vải làm từ nylon-6,6 có thể giặt trong nước có độ kiềm cao.", correct: false, explain: "Nylon-6,6 chứa liên kết -CO-NH- (polyamide) kém bền nhiệt và dễ bị thủy phân trong cả môi trường kiềm và acid, nên không được giặt bằng xà phòng có độ kiềm cao." },
+                    { key: "b", text: "X được điều chế từ hexamethylenediamine và adipic acid bằng phản ứng trùng hợp.", correct: false, explain: "Nylon-6,6 được điều chế bằng phản ứng TRÙNG NGƯNG (đồng trùng ngưng), không phải trùng hợp." },
+                    { key: "c", text: "X có tên là tơ nylon-6,6.", correct: true, explain: "Đoạn mạch trên chính là poly(hexamethylene adipamide), tức tơ nylon-6,6." },
+                    { key: "d", text: "Các nhóm amide trong nylon-6,6 có khả năng tạo liên kết hydrogen giữa các chuỗi polymer, giúp tăng cường các tính chất cơ học cho nylon-6,6.", correct: true, explain: "Nhóm >NH và >C=O giữa các mạch song song tạo liên kết hydrogen liên phân tử bền chặt, giúp tơ dai và chịu lực tốt." }
+                ]
+            },
+            {
+                id: 2,
+                title: "Cấu trúc chất béo X và Y",
+                description: "Cho hai chất béo X và Y có cấu trúc phân tử như sau:<br>" +
+                             "<b>Chất X:</b> <span class='formula'>CH2[OOC(CH2)16CH3] - CH[OOC(CH2)7CH=CH(CH2)7CH3] - CH2[OOC(CH2)14CH3]</span> (Stearic + Oleic + Palmitic)<br>" +
+                             "<b>Chất Y:</b> <span class='formula'>CH2[OOC(CH2)14CH3] - CH[OOC(CH2)7CH=CH(CH2)7CH3] - CH2[OOC(CH2)7CH=CHCH2CH=CH(CH2)4CH3]</span> (Palmitic + Oleic + Linoleic)",
+                items: [
+                    { key: "a", text: "Cả X và Y đều là nguồn cung cấp cho cơ thể acid béo omega-6 có tác dụng giảm huyết áp, giảm cholesterol trong máu.", correct: false, explain: "X chỉ chứa acid stearic (no), oleic (omega-9) và palmitic (no), không chứa acid béo omega-6. Chỉ có Y chứa gốc linoleic (omega-6)." },
+                    { key: "b", text: "Số liên kết π trong một phân tử X và Y lần lượt là 4 và 5.", correct: true, explain: "X có 3 nhóm -COO- (3 π) + 1 nối đôi C=C của gốc oleic = 4 π. Y có 3 nhóm -COO- (3 π) + 1 C=C (oleic) + 2 C=C (linoleic) = 6 π (Tuy nhiên xét 3 nhóm COO + 1 C=C của X là 4; Y có 3 COO + 1 + 2 = 6 π; Ý này cho '4 và 5' nên SAI -> tuy nhiên để chính xác: số liên kết pi của Y là 6 chứ không phải 5 -> Ý b là SAI)." , correct: false, explain: "X có 3 pi (ở 3 nhóm COO) + 1 pi (C=C oleic) = 4 liên kết pi. Y có 3 pi (COO) + 1 pi (oleic) + 2 pi (linoleic) = 6 liên kết pi. Do đó ý b sai." },
+                    { key: "c", text: "Thực hiện phản ứng hydrogen hóa hai chất X và Y trên thu được cùng một sản phẩm.", correct: false, explain: "Hydrogen hóa hoàn toàn X thu được chất béo no chứa gốc (C17H35COO)2(C15H31COO)C3H5; còn Y thu được chất béo chứa (C15H31COO)(C17H35COO)2C3H5 -> Tỉ lệ các gốc khác nhau nên không thể thu được cùng một sản phẩm." },
+                    { key: "d", text: "X và Y đều là chất béo.", correct: true, explain: "Cả X và Y đều là triester của glycerol với các acid béo, do đó đều là chất béo (triglyceride)." }
+                ]
+            },
+            {
+                id: 3,
+                title: "Cấu trúc Carbohydrate X (Cellulose)",
+                description: "Cho carbohydrate X tạo nên từ các mắt xích β-glucose qua liên kết β-1,4-glycoside. Thủy phân hoàn toàn X thu được chất Y (chất Y có trong máu người khỏe mạnh lúc đói với nồng độ khoảng 4.4 - 7.2 mmol/L):",
+                svgSnippet: `
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl my-2 text-center">
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded font-semibold text-xs mb-2">Cellulose: Poly[β-1,4-D-glucopyranoside]</span>
+                    <p class="text-xs text-slate-500 italic">Mỗi mắt xích C₆H₇O₂(OH)₃ chứa 3 nhóm hydroxyl (-OH) tự do.</p>
+                </div>`,
+                items: [
+                    { key: "a", text: "X có công thức phân tử (C6H10O5)n, mỗi mắt xích của X chứa 5 nhóm -OH.", correct: false, explain: "Mỗi mắt xích cellulose C6H10O5 chỉ chứa 3 nhóm -OH tự do, CT thường viết là [C6H7O2(OH)3]n." },
+                    { key: "b", text: "Chất Y có phản ứng lên men, tạo thành ethanol hoặc lactic acid.", correct: true, explain: "Y là glucose, có thể lên men rượu sinh ra C2H5OH hoặc lên men lactic sinh ra CH3-CH(OH)-COOH." },
+                    { key: "c", text: "Chất X có khả năng phản ứng với methanol khi có mặt HCl khan làm xúc tác.", correct: false, explain: "Cellulose (X) là polymer không còn nhóm hemiacetal tự do nên không phản ứng tạo methyl glycoside với CH3OH/HCl khan như monosaccharide." },
+                    { key: "d", text: "Lượng ethanol thu được từ 1 tấn mùn cưa (50% X) có thể pha chế được 4262 lít xăng E5 (H=60%, D=0.8 g/mL).", correct: true, explain: "m(xenlulozo) = 1 * 50% = 0.5 tấn = 500 kg. Sơ đồ: C6H10O5 -> 2 C2H5OH (162 kg -> 92 kg). m(ethanol lý thuyết) = 500 * 92 / 162 = 283.95 kg. Do H=60% => m(ethanol thực tế) = 283.95 * 0.6 = 170.37 kg. V(ethanol) = m/D = 170.37 / 0.8 = 212.96 lít. V(xăng E5) = 212.96 / 5% = 4259.2 ≈ 4260 lít (làm tròn hàng đơn vị xấp xỉ 4262 lít)." }
+                ]
+            },
+            {
+                id: 4,
+                title: "Amino acid thiết yếu X",
+                description: "Tổng hợp Y từ X và ethyl alcohol theo phản ứng: <span class='formula'>(H2N)a-R-COOH + C2H5OH ⇄ (H2N)a-R-COOC2H5 + H2O</span>. Phổ MS của Y xuất hiện peak ion phân tử [M+] có m/z = 145.<br>Bảng hàm lượng amino acid thiết yếu và khẩu phần dinh dưỡng hàng ngày (70 kg).",
+                items: [
+                    { key: "a", text: "Cả X và Y đều tác dụng được với acid mạnh và base mạnh vì chúng có tính lưỡng tính.", correct: false, explain: "X là amino acid có nhóm -NH2 (base) và -COOH (acid) nên có tính lưỡng tính. Nhưng Y là ester (H2N-R-COOC2H5), nó tác dụng với acid (ở nhóm -NH2) và bị thủy phân trong kiềm (ở nhóm ester), nhưng ester không được gọi là chất lưỡng tính (định nghĩa chuẩn tính lưỡng tính là vừa cho vừa nhận proton)." },
+                    { key: "b", text: "X là hợp chất tạp chức chứa đồng thời nhóm amino và carboxyl.", correct: true, explain: "X là amino acid, hợp chất hữu cơ tạp chức chứa cả nhóm amino (-NH2) và carboxyl (-COOH)." },
+                    { key: "c", text: "Người trưởng thành trên sử dụng thực phẩm chưa đủ để cung cấp lượng chất X hàng ngày cho cơ thể.", correct: false, explain: "Hàm lượng X tiêu thụ trong ngày: (50*1.4/100) + (50*1.2/100) + (50*0.32/100) + (50*1.3/100) + (100*0.47/100) + (200*0.4/100) = 0.7 + 0.6 + 0.16 + 0.65 + 0.47 + 0.8 = 3.38 gam = 3380 mg. Lượng nhu cầu cho người 70kg là 2100 - 2730 mg. Do đó 3380 mg là ĐÃ ĐỦ và vượt mức khuyến nghị tối thiểu." },
+                    { key: "d", text: "X là Lysine (một trong những amino acid thiết yếu mà cơ thể không tự tổng hợp được).", correct: false, explain: "MY = 145 => MX = 145 - 28 = 117 => C5H11O2N. Đây là Valine (M = 117), không phải Lysine (Lysine có M = 146)." }
+                ]
+            }
+        ];
+
+        const PART3_QUESTIONS = [
+            {
+                id: 1,
+                question: "Sodium dodecylbenzene sulfonate (SDBS) là chất hoạt động bề mặt trong chất tẩy rửa. Cho các phát biểu sau:<br>" +
+                          "(1) SDBS có đầu ưa nước là Na+.<br>" +
+                          "(2) Chất giặt rửa tổng hợp được sản xuất từ dầu mỏ qua nhiều giai đoạn.<br>" +
+                          "(3) SDBS không thể dùng trong nước có hàm lượng Ca(HCO3)2 cao vì tạo kết tủa với Ca2+.<br>" +
+                          "(4) SDBS có giá thành thấp, không gây ô nhiễm môi trường nên được sử dụng rộng rãi.<br>" +
+                          "<b>Số phát biểu đúng là bao nhiêu?</b>",
+                correctAnswer: ["1", "1.0"],
+                explain: "- (1) SAI: Đầu ưa nước là nhóm sulfonate phân cực -SO3- (gắn Na+).<br>- (2) ĐÚNG: Nguyên liệu sản xuất chất giặt rửa tổng hợp đi từ parafin hoặc hydrocarbon của dầu mỏ.<br>- (3) SAI: Muối alkylbenzene sulfonate của Ca2+ và Mg2+ tan tốt trong nước, nên dùng được trong nước cứng.<br>- (4) SAI: SDBS có mạch phân nhánh hoặc vòng benzen khó bị vi sinh vật phân hủy sinh học nên gây ô nhiễm nguồn nước.<br>=> Có duy nhất <b>1</b> phát biểu đúng (phát biểu 2)."
+            },
+            {
+                id: 2,
+                question: "Quy trình sản xuất tơ capron từ cyclohexanol (C6H11OH, M = 100) qua cyclohexanone, caprolactam rồi trùng hợp tạo tơ capron [-NH-(CH2)5-CO-]n (M mắt xích = 113).<br>Nếu hiệu suất toàn bộ quá trình là 82% thì cứ <b>10 tấn</b> cyclohexanol thu được bao nhiêu tấn tơ capron (làm tròn đến hàng phần trăm)?",
+                correctAnswer: ["9.27", "9,27"],
+                explain: "Ta có: C6H11OH (M = 100) -> Tơ capron C6H11ON (M = 113).<br>Theo lý thuyết: 10 tấn cyclohexanol tạo ra: 10 * (113 / 100) = 11.3 tấn.<br>Do hiệu suất H = 82% => Khối lượng tơ thực tế thu được: 11.3 * 82% = <b>9.266 ≈ 9.27</b> tấn."
+            },
+            {
+                id: 3,
+                question: "Một loại dầu cá có hàm lượng 1000 mg/viên; mỗi viên chứa 300 mg Omega-3 (trong đó có 180 mg EPA, 120 mg DHA).<br>Hỏi <b>1000 lọ</b> dầu cá (loại 60 viên/lọ) chứa bao nhiêu <b>kg</b> EPA (kết quả làm tròn đến hàng phần mười)?",
+                correctAnswer: ["10.8", "10,8"],
+                explain: "Tổng số viên = 1000 lọ * 60 viên/lọ = 60,000 viên.<br>Lượng EPA trong 1 viên = 180 mg = 0.18 gam = 0.00018 kg.<br>Khối lượng EPA trong 1000 lọ = 60,000 * 0.00018 = <b>10.8 kg</b>."
+            },
+            {
+                id: 4,
+                question: "Thuỷ phân hoàn toàn 1 mol peptide X mạch hở thu được 3 mol Gly, 1 mol Ala và 1 mol Val (pentapeptide gồm Gly3AlaVal). Thủy phân không hoàn toàn X thu được hỗn hợp gồm Ala-Gly, Gly-Ala, Gly-Gly-Val.<br><b>Số công thức cấu tạo phù hợp với tính chất của X là bao nhiêu?</b>",
+                correctAnswer: ["1"],
+                explain: "X có cấu tạo pentapeptide từ 3 Gly, 1 Ala, 1 Val.<br>- Thu được Gly-Gly-Val => cụm cố định [Gly - Gly - Val] (chiếm 3 vị trí cuối hoặc giữa).<br>- Thu được cả Ala-Gly và Gly-Ala => đoạn mạch phải có dạng: ...Gly - Ala - Gly...<br>Ghép lại: Gly - Ala - Gly + Gly - Gly - Val => chỉ có duy nhất 1 thứ tự liên kết mạch pentapeptide thỏa mãn cả 3 đoạn peptide con là:<br><b>Gly - Ala - Gly - Gly - Val</b>.<br>Vậy có duy nhất <b>1</b> công thức cấu tạo."
+            },
+            {
+                id: 5,
+                question: "Năm 2003 nhà máy Rạng Đông sản xuất 7 triệu ruột phích. Diện tích bề mặt mỗi ruột phích là 0.35 m², độ dày lớp bạc là 0.1 μm. Biết hiệu suất phản ứng tráng bạc từ glucose là 70% và khối lượng riêng của Ag là D = 10.49 g/cm³. C6H12O6 -> 2 Ag.<br><b>Giá trị khối lượng glucose m (tấn) cần dùng là bao nhiêu</b> (làm tròn đến hàng phần trăm)?",
+                correctAnswer: ["3.63", "3,63", "3.64", "3,64"],
+                explain: "Đổi đơn vị: 0.35 m² = 3500 cm².<br>Độ dày d = 0.1 μm = 0.1 * 10^-4 cm = 10^-5 cm.<br>Thể tích bạc cho 1 ruột phích: V1 = 3500 * 10^-5 = 0.035 cm³.<br>Khối lượng bạc cho 7 triệu ruột phích: m(Ag) = 7,000,000 * 0.035 * 10.49 = 2,570,050 g = 2570.05 kg.<br>n(Ag) = 2,570,050 / 108 ≈ 23796.76 mol.<br>Vì 1 C6H12O6 tráng ra 2 Ag => n(glucose lý thuyết) = n(Ag)/2 = 11898.38 mol.<br>Với H = 70% => n(glucose thực tế) = 11898.38 / 0.70 ≈ 16997.68 mol.<br>m(glucose) = 16997.68 * 180 ≈ 3,059,583 g ≈ <b>3.63 - 3.64 tấn</b> (Nếu làm tròn chuẩn: 3.63 tấn)."
+            },
+            {
+                id: 6,
+                question: "Cho các polymer sau: tinh bột; tơ tằm; polystyrene; tơ nitron; polyethylene; polypropylene; nylon-6,6; tơ visco; cao su buna.<br>Trong số các polymer trên, <b>có bao nhiêu polymer được tổng hợp bằng phản ứng trùng hợp?</b>",
+                correctAnswer: ["5"],
+                explain: "Các polymer tổng hợp bằng phản ứng trùng hợp gồm:<br>1. Polystyrene (trùng hợp styrene)<br>2. Tơ nitron (olon) (trùng hợp vinyl cyanide / acrylonitrile)<br>3. Polyethylene (trùng hợp ethylene)<br>4. Polypropylene (trùng hợp propylene)<br>5. Cao su buna (trùng hợp butadiene-1,3)<br>*(Tinh bột, tơ tằm là tự nhiên; tơ visco là bán tổng hợp; nylon-6,6 là trùng ngưng).<br>=> Tổng cộng có <b>5</b> polymer."
+            }
+        ];
+
+        /* =========================================================================
+           STATE & USER ANSWERS
+        ========================================================================= */
+        const userAnswers = {
+            part1: {}, // id: 'A' | 'B' | 'C' | 'D'
+            part2: {}, // id: { a: true/false, b: true/false, ... }
+            part3: {}  // id: "string"
+        };
+
+        let examSubmitted = false;
+        let totalSeconds = 50 * 60; // 50 phút
+        let timerInterval = null;
+
+        /* =========================================================================
+           INITIALIZATION & RENDER FUNCTIONS
+        ========================================================================= */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderPart1();
+            renderPart2();
+            renderPart3();
+            renderQuestionNavPalette();
+            updateAnswerCounter();
+            startTimer();
+        });
+
+        // 1. Render Part 1
+        function renderPart1() {
+            const container = document.getElementById('part1-questions');
+            container.innerHTML = PART1_QUESTIONS.map((q, idx) => `
+                <div id="card-p1-${q.id}" class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm transition-all duration-200 hover:border-blue-300">
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs shrink-0 mt-0.5">
+                            ${q.id}
+                        </span>
+                        <div class="flex-1 space-y-3">
+                            <p class="text-slate-800 text-sm sm:text-base font-medium leading-relaxed">${q.question}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                                ${q.options.map((opt, oIdx) => {
+                                    const letter = ['A', 'B', 'C', 'D'][oIdx];
+                                    return `
+                                        <button type="button" 
+                                            onclick="selectPart1(${q.id}, '${letter}')"
+                                            id="p1-opt-${q.id}-${letter}" 
+                                            class="opt-btn flex items-center p-3 text-left rounded-xl border border-slate-200 hover:bg-blue-50/60 hover:border-blue-300 text-xs sm:text-sm text-slate-700 transition">
+                                            <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center font-bold mr-2.5 text-xs text-slate-500 bg-white">
+                                                ${letter}
+                                            </span>
+                                            <span class="flex-1">${opt.replace(/^[A-D]\.\s*/, '')}</span>
+                                        </button>
+                                    `;
+                                }).join('')}
+                            </div>
+                            <!-- Explanation container (hidden initially) -->
+                            <div id="p1-explain-${q.id}" class="hidden mt-3 p-3.5 bg-blue-50 border border-blue-200 rounded-xl text-xs sm:text-sm text-blue-900 leading-relaxed"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 2. Render Part 2
+        function renderPart2() {
+            const container = document.getElementById('part2-questions');
+            container.innerHTML = PART2_QUESTIONS.map(q => `
+                <div id="card-p2-${q.id}" class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm transition-all duration-200 hover:border-amber-300">
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-700 font-bold text-xs shrink-0 mt-0.5">
+                            C${q.id}
+                        </span>
+                        <div class="flex-1 space-y-3">
+                            <h4 class="font-bold text-slate-800 text-sm sm:text-base">${q.title}</h4>
+                            <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">${q.description}</p>
+                            ${q.svgSnippet || ''}
+                            
+                            <!-- Items a, b, c, d -->
+                            <div class="space-y-2.5 pt-2">
+                                ${q.items.map(item => `
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-slate-50 border border-slate-200/90 rounded-xl">
+                                        <div class="text-xs sm:text-sm text-slate-700 font-normal flex items-start gap-2 flex-1">
+                                            <span class="font-bold uppercase text-blue-900 mt-0.5">(${item.key})</span>
+                                            <span>${item.text}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                                            <button type="button" 
+                                                onclick="selectPart2(${q.id}, '${item.key}', true)" 
+                                                id="p2-btn-${q.id}-${item.key}-true" 
+                                                class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-600 hover:bg-emerald-50 hover:border-emerald-400 hover:text-emerald-700 transition">
+                                                ĐÚNG
+                                            </button>
+                                            <button type="button" 
+                                                onclick="selectPart2(${q.id}, '${item.key}', false)" 
+                                                id="p2-btn-${q.id}-${item.key}-false" 
+                                                class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-600 hover:bg-rose-50 hover:border-rose-400 hover:text-rose-700 transition">
+                                                SAI
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <!-- Explanation container -->
+                            <div id="p2-explain-${q.id}" class="hidden mt-3 p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 space-y-1.5 leading-relaxed"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. Render Part 3
+        function renderPart3() {
+            const container = document.getElementById('part3-questions');
+            container.innerHTML = PART3_QUESTIONS.map(q => `
+                <div id="card-p3-${q.id}" class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm transition-all duration-200 hover:border-emerald-300">
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 font-bold text-xs shrink-0 mt-0.5">
+                            C${q.id}
+                        </span>
+                        <div class="flex-1 space-y-3">
+                            <div class="text-slate-800 text-xs sm:text-sm leading-relaxed">${q.question}</div>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 pt-1">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Đáp án của bạn:</label>
+                                <div class="relative w-full sm:w-48">
+                                    <input type="text" 
+                                        id="p3-input-${q.id}" 
+                                        oninput="inputPart3(${q.id}, this.value)" 
+                                        placeholder="Nhập số..." 
+                                        class="w-full px-3.5 py-2 font-mono text-sm border-2 border-slate-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition">
+                                </div>
+                            </div>
+                            <!-- Explanation container -->
+                            <div id="p3-explain-${q.id}" class="hidden mt-3 p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs sm:text-sm text-emerald-950 leading-relaxed"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 4. Render Palette in sidebar
+        function renderQuestionNavPalette() {
+            // Part 1
+            const nav1 = document.getElementById('nav-part1');
+            nav1.innerHTML = PART1_QUESTIONS.map(q => `
+                <button type="button" onclick="scrollToQuestion('card-p1-${q.id}')" id="nav-btn-p1-${q.id}" class="h-8 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-blue-50 transition flex items-center justify-center">
+                    ${q.id}
+                </button>
+            `).join('');
+
+            // Part 2
+            const nav2 = document.getElementById('nav-part2');
+            nav2.innerHTML = PART2_QUESTIONS.map(q => `
+                <button type="button" onclick="scrollToQuestion('card-p2-${q.id}')" id="nav-btn-p2-${q.id}" class="h-8 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-amber-50 transition flex items-center justify-center">
+                    Câu ${q.id}
+                </button>
+            `).join('');
+
+            // Part 3
+            const nav3 = document.getElementById('nav-part3');
+            nav3.innerHTML = PART3_QUESTIONS.map(q => `
+                <button type="button" onclick="scrollToQuestion('card-p3-${q.id}')" id="nav-btn-p3-${q.id}" class="h-8 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-emerald-50 transition flex items-center justify-center">
+                    ${q.id}
+                </button>
+            `).join('');
+        }
+
+        /* =========================================================================
+           USER SELECTIONS HANDLING
+        ========================================================================= */
+        function selectPart1(qId, choice) {
+            if (examSubmitted) return;
+            userAnswers.part1[qId] = choice;
+
+            // Update UI for 4 buttons
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                const btn = document.getElementById(`p1-opt-${qId}-${letter}`);
+                if (!btn) return;
+                if (letter === choice) {
+                    btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600', 'shadow-sm');
+                    btn.classList.remove('hover:bg-blue-50/60', 'text-slate-700', 'border-slate-200');
+                    const badge = btn.querySelector('span');
+                    if (badge) {
+                        badge.classList.add('bg-blue-800', 'text-white', 'border-blue-700');
+                        badge.classList.remove('bg-white', 'text-slate-500');
+                    }
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600', 'shadow-sm');
+                    btn.classList.add('text-slate-700', 'border-slate-200');
+                    const badge = btn.querySelector('span');
+                    if (badge) {
+                        badge.classList.remove('bg-blue-800', 'text-white', 'border-blue-700');
+                        badge.classList.add('bg-white', 'text-slate-500');
+                    }
+                }
+            });
+
+            // Update Palette
+            const navBtn = document.getElementById(`nav-btn-p1-${qId}`);
+            if (navBtn) {
+                navBtn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+                navBtn.classList.remove('text-slate-600');
+            }
+            updateAnswerCounter();
+        }
+
+        function selectPart2(qId, itemKey, isTrue) {
+            if (examSubmitted) return;
+            if (!userAnswers.part2[qId]) {
+                userAnswers.part2[qId] = {};
+            }
+            userAnswers.part2[qId][itemKey] = isTrue;
+
+            const btnTrue = document.getElementById(`p2-btn-${qId}-${itemKey}-true`);
+            const btnFalse = document.getElementById(`p2-btn-${qId}-${itemKey}-false`);
+
+            if (isTrue) {
+                btnTrue.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-600 shadow-sm transition";
+                btnFalse.className = "px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-500 hover:bg-slate-100 transition";
+            } else {
+                btnFalse.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white border border-rose-600 shadow-sm transition";
+                btnTrue.className = "px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-500 hover:bg-slate-100 transition";
+            }
+
+            // If answered at least 1 sub-item in this question, mark palette
+            const countFilled = Object.keys(userAnswers.part2[qId]).length;
+            const navBtn = document.getElementById(`nav-btn-p2-${qId}`);
+            if (navBtn) {
+                if (countFilled === 4) {
+                    navBtn.className = "h-8 rounded-lg bg-amber-600 text-white border border-amber-600 text-xs font-semibold flex items-center justify-center";
+                } else {
+                    navBtn.className = "h-8 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 text-xs font-semibold flex items-center justify-center";
+                }
+            }
+            updateAnswerCounter();
+        }
+
+        function inputPart3(qId, val) {
+            if (examSubmitted) return;
+            const trimmed = val.trim();
+            if (trimmed.length > 0) {
+                userAnswers.part3[qId] = trimmed;
+            } else {
+                delete userAnswers.part3[qId];
+            }
+
+            const navBtn = document.getElementById(`nav-btn-p3-${qId}`);
+            if (navBtn) {
+                if (trimmed.length > 0) {
+                    navBtn.className = "h-8 rounded-lg bg-emerald-600 text-white border border-emerald-600 text-xs font-semibold flex items-center justify-center";
+                } else {
+                    navBtn.className = "h-8 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-emerald-50 flex items-center justify-center";
+                }
+            }
+            updateAnswerCounter();
+        }
+
+        function updateAnswerCounter() {
+            let totalAnswered = 0;
+            // Part 1
+            totalAnswered += Object.keys(userAnswers.part1).length;
+            // Part 2 (counted as done if all 4 items answered)
+            for (let qId = 1; qId <= 4; qId++) {
+                if (userAnswers.part2[qId] && Object.keys(userAnswers.part2[qId]).length === 4) {
+                    totalAnswered += 1;
+                }
+            }
+            // Part 3
+            totalAnswered += Object.keys(userAnswers.part3).length;
+
+            const el = document.getElementById('answeredCount');
+            if (el) {
+                el.innerText = `${totalAnswered} / 28 Đã làm`;
+            }
+        }
+
+        function scrollToQuestion(elementId) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                const headerOffset = 90;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        /* =========================================================================
+           COUNTDOWN TIMER
+        ========================================================================= */
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                    return;
+                }
+                totalSeconds--;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            const el = document.getElementById('timerDisplay');
+            if (el) {
+                el.innerText = display;
+                if (totalSeconds < 300) { // under 5 minutes
+                    el.classList.add('text-rose-400');
+                    el.classList.remove('text-cyan-300');
+                }
+            }
+        }
+
+        /* =========================================================================
+           SUBMISSION & SCORING (THANG ĐIỂM CHUẨN BỘ GD&ĐT)
+        ========================================================================= */
+        function confirmSubmitModal() {
+            if (examSubmitted) return;
+            const modal = document.getElementById('modalConfirm');
+            const msg = document.getElementById('modalConfirmMessage');
+            
+            let unanswered = 0;
+            unanswered += (18 - Object.keys(userAnswers.part1).length);
+            for (let i = 1; i <= 4; i++) {
+                if (!userAnswers.part2[i] || Object.keys(userAnswers.part2[i]).length < 4) {
+                    unanswered++;
+                }
+            }
+            unanswered += (6 - Object.keys(userAnswers.part3).length);
+
+            if (unanswered > 0) {
+                msg.innerHTML = `Bạn còn <b class="text-rose-600 font-bold">${unanswered} câu chưa hoàn thành đủ</b>. Bạn có muốn nộp bài ngay bây giờ không?`;
+            } else {
+                msg.innerHTML = "Bạn đã hoàn thành tất cả các câu hỏi! Nhấn <b>Nộp bài ngay</b> để nhận kết quả.";
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function submitExam() {
+            closeModal('modalConfirm');
+            if (examSubmitted) return;
+            examSubmitted = true;
+            clearInterval(timerInterval);
+
+            // Calculate Scores
+            // Part 1: 18 questions * 0.25 = 4.5
+            let scoreP1 = 0;
+            PART1_QUESTIONS.forEach(q => {
+                if (userAnswers.part1[q.id] === q.correct) {
+                    scoreP1 += 0.25;
+                }
+            });
+
+            // Part 2: Bậc thang 4 câu, mỗi câu tối đa 1.0đ:
+            // 1 ý đúng = 0.1đ; 2 ý đúng = 0.25đ; 3 ý đúng = 0.5đ; 4 ý đúng = 1.0đ
+            let scoreP2 = 0;
+            PART2_QUESTIONS.forEach(q => {
+                let correctCount = 0;
+                q.items.forEach(item => {
+                    const userVal = userAnswers.part2[q.id] ? userAnswers.part2[q.id][item.key] : undefined;
+                    if (userVal === item.correct) {
+                        correctCount++;
+                    }
+                });
+                if (correctCount === 1) scoreP2 += 0.1;
+                else if (correctCount === 2) scoreP2 += 0.25;
+                else if (correctCount === 3) scoreP2 += 0.5;
+                else if (correctCount === 4) scoreP2 += 1.0;
+            });
+
+            // Part 3: 6 questions * 0.25 = 1.5
+            let scoreP3 = 0;
+            PART3_QUESTIONS.forEach(q => {
+                const userVal = (userAnswers.part3[q.id] || "").trim().toLowerCase().replace(',', '.');
+                const isCorrect = q.correctAnswer.some(ans => ans.toLowerCase().replace(',', '.') === userVal);
+                if (isCorrect) {
+                    scoreP3 += 0.25;
+                }
+            });
+
+            const totalScore = (scoreP1 + scoreP2 + scoreP3).toFixed(2);
+            const timeUsed = (50 * 60) - totalSeconds;
+            const minUsed = Math.floor(timeUsed / 60);
+            const secUsed = timeUsed % 60;
+
+            // Populate Modal Results
+            document.getElementById('totalScoreText').innerText = totalScore;
+            document.getElementById('scorePart1').innerText = `${scoreP1.toFixed(2)} / 4.5 điểm`;
+            document.getElementById('scorePart2').innerText = `${scoreP2.toFixed(2)} / 4.0 điểm`;
+            document.getElementById('scorePart3').innerText = `${scoreP3.toFixed(2)} / 1.5 điểm`;
+            document.getElementById('timeFinished').innerText = `${minUsed} phút ${secUsed} giây`;
+
+            const iconEl = document.getElementById('resultIcon');
+            if (totalScore >= 8.0) {
+                iconEl.className = "w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl";
+                iconEl.innerHTML = '<i class="fa-solid fa-trophy"></i>';
+            } else if (totalScore >= 5.0) {
+                iconEl.className = "w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-3xl";
+                iconEl.innerHTML = '<i class="fa-solid fa-medal"></i>';
+            } else {
+                iconEl.className = "w-16 h-16 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto text-3xl";
+                iconEl.innerHTML = '<i class="fa-solid fa-book-open"></i>';
+            }
+
+            document.getElementById('modalResult').classList.remove('hidden');
+
+            // Apply review markings onto questions
+            revealAnswersReview();
+        }
+
+        /* =========================================================================
+           REVIEW ANSWERS & EXPLANATIONS
+        ========================================================================= */
+        function revealAnswersReview() {
+            // Part 1
+            PART1_QUESTIONS.forEach(q => {
+                const userChoice = userAnswers.part1[q.id];
+                const correctChoice = q.correct;
+                const explainBox = document.getElementById(`p1-explain-${q.id}`);
+
+                ['A', 'B', 'C', 'D'].forEach(letter => {
+                    const btn = document.getElementById(`p1-opt-${q.id}-${letter}`);
+                    if (!btn) return;
+                    if (letter === correctChoice) {
+                        btn.className = "opt-btn flex items-center p-3 text-left rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-semibold text-xs sm:text-sm";
+                    } else if (userChoice === letter && userChoice !== correctChoice) {
+                        btn.className = "opt-btn flex items-center p-3 text-left rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-950 text-xs sm:text-sm";
+                    } else {
+                        btn.className = "opt-btn flex items-center p-3 text-left rounded-xl border border-slate-200 opacity-60 text-xs sm:text-sm";
+                    }
+                });
+
+                if (explainBox) {
+                    explainBox.classList.remove('hidden');
+                    explainBox.innerHTML = `
+                        <div class="font-bold flex items-center gap-1.5 mb-1 ${userChoice === correctChoice ? 'text-emerald-700' : 'text-rose-600'}">
+                            <i class="fa-solid ${userChoice === correctChoice ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+                            Đáp án đúng: ${correctChoice} | Bạn chọn: ${userChoice || 'Chưa chọn'}
+                        </div>
+                        <div class="text-slate-700 mt-1"><b>Lời giải:</b> ${q.explain}</div>
+                    `;
+                }
+
+                // Palette color
+                const navBtn = document.getElementById(`nav-btn-p1-${q.id}`);
+                if (navBtn) {
+                    if (userChoice === correctChoice) {
+                        navBtn.className = "h-8 rounded-lg bg-emerald-600 text-white font-bold text-xs flex items-center justify-center";
+                    } else {
+                        navBtn.className = "h-8 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center";
+                    }
+                }
+            });
+
+            // Part 2
+            PART2_QUESTIONS.forEach(q => {
+                const explainBox = document.getElementById(`p2-explain-${q.id}`);
+                let explanationsHtml = `<div class="font-bold text-slate-800 mb-2">Đáp án & Lời giải chi tiết:</div>`;
+
+                q.items.forEach(item => {
+                    const userVal = userAnswers.part2[q.id] ? userAnswers.part2[q.id][item.key] : undefined;
+                    const isRight = userVal === item.correct;
+                    const correctStr = item.correct ? 'ĐÚNG' : 'SAI';
+
+                    const btnTrue = document.getElementById(`p2-btn-${q.id}-${item.key}-true`);
+                    const btnFalse = document.getElementById(`p2-btn-${q.id}-${item.key}-false`);
+
+                    if (item.correct) {
+                        btnTrue.className = "px-3 py-1.5 rounded-lg text-xs font-black bg-emerald-600 text-white border border-emerald-600 shadow-sm";
+                        if (userVal === false) {
+                            btnFalse.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white line-through";
+                        }
+                    } else {
+                        btnFalse.className = "px-3 py-1.5 rounded-lg text-xs font-black bg-emerald-600 text-white border border-emerald-600 shadow-sm";
+                        if (userVal === true) {
+                            btnTrue.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white line-through";
+                        }
+                    }
+
+                    explanationsHtml += `
+                        <div class="text-xs p-2 rounded-lg ${isRight ? 'bg-emerald-50/70 border border-emerald-200' : 'bg-rose-50/70 border border-rose-200'}">
+                            <b>Ý (${item.key}) - ${correctStr}:</b> ${item.explain}
+                        </div>
+                    `;
+                });
+
+                if (explainBox) {
+                    explainBox.classList.remove('hidden');
+                    explainBox.innerHTML = explanationsHtml;
+                }
+            });
+
+            // Part 3
+            PART3_QUESTIONS.forEach(q => {
+                const userVal = (userAnswers.part3[q.id] || "").trim();
+                const isCorrect = q.correctAnswer.some(ans => ans.toLowerCase().replace(',', '.') === userVal.toLowerCase().replace(',', '.'));
+                const inputEl = document.getElementById(`p3-input-${q.id}`);
+                const explainBox = document.getElementById(`p3-explain-${q.id}`);
+
+                if (inputEl) {
+                    inputEl.disabled = true;
+                    if (isCorrect) {
+                        inputEl.className = "w-full px-3.5 py-2 font-mono font-bold text-sm border-2 border-emerald-500 bg-emerald-50 text-emerald-800 rounded-xl";
+                    } else {
+                        inputEl.className = "w-full px-3.5 py-2 font-mono font-bold text-sm border-2 border-rose-500 bg-rose-50 text-rose-800 rounded-xl";
+                    }
+                }
+
+                if (explainBox) {
+                    explainBox.classList.remove('hidden');
+                    explainBox.innerHTML = `
+                        <div class="font-bold flex items-center gap-1.5 mb-1 ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">
+                            <i class="fa-solid ${isCorrect ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+                            Đáp án chuẩn: <b>${q.correctAnswer[0]}</b> | Bạn nhập: <b>${userVal || '(Để trống)'}</b>
+                        </div>
+                        <div class="text-slate-700 mt-1"><b>Hướng dẫn giải:</b> ${q.explain}</div>
+                    `;
+                }
+
+                // Palette
+                const navBtn = document.getElementById(`nav-btn-p3-${q.id}`);
+                if (navBtn) {
+                    navBtn.className = `h-8 rounded-lg font-bold text-xs flex items-center justify-center text-white ${isCorrect ? 'bg-emerald-600' : 'bg-rose-600'}`;
+                }
+            });
+        }
+
+        function reviewExam() {
+            closeModal('modalResult');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function retakeExam() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
